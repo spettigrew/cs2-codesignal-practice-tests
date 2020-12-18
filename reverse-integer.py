@@ -29,22 +29,22 @@ Constraints:
 -231 <= x <= 231 - 1
 """
 
-class Solution:     # runtime error
+class Solution:
     def reverse(self, x: int) -> int:
-        sign = -1 if x < 0 else 1
-        x *= sign
+        if x < 0:
+            num = str(x)
+            num = num[1:]
+            print(num)
+        else:
 
-        # Remove leading zero in the reversed integer
-        while x:
-            if x % 10 == 0:
-                x /= 10
-            else:
-                break
+            num  = str(x)
 
-        # string manipulation
-        x = str(x)
-        lst = list(x)  # list('234') returns ['2', '3', '4']
-        lst.reverse()
-        x = "".join(lst)
-        x = int(x)
-        return sign*x 
+        new_num = num[::-1]
+        # print(new_num)
+        if x < 0:
+            if abs(-int(new_num)) < 2 ** 31 and -int(new_num) != 2 ** 31 -1:
+                return -int(new_num)
+            return 0
+        if abs(int(new_num)) < 2 ** 31 and int(new_num) != 2 ** 31 -1:
+            return int(new_num)
+        return 0
