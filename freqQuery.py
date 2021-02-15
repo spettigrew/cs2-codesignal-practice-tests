@@ -108,9 +108,9 @@ from collections import Counter
 
 # Complete the freqQuery function below.
 def freqQuery(queries):
-     
-valueFreq = Counter()
-freqCount = Counter()
+
+    valueFreq = Counter()
+    freqCount = Counter()
 
 # dictionary
 # key -> value
@@ -120,62 +120,62 @@ freqCount = Counter()
 # key -> value
 # frequency -> [values that occur]
 
-# keep track of our answer = []
-answer = []
-# loop through each query:
-for query in queries:
-    if query[0] == 1:
-        freqCount[valueFreq[query[1]]] -= 1
-        valueFreq[query[1]] += 1
-        freqCount[valueFreq[query[1]]] += 1
-
-    elif query[0] == 2:
-        if valueFreq[query[1]] > 0:
+    # keep track of our answer = []
+    answer = []
+    # loop through each query:
+    for query in queries:
+        if query[0] == 1:
             freqCount[valueFreq[query[1]]] -= 1
-            valueFreq[query[1]] -= 1
+            valueFreq[query[1]] += 1
             freqCount[valueFreq[query[1]]] += 1
-    else:
-        if freqCount[query[1]] > 0:
-            answer.append(1)
+
+        elif query[0] == 2:
+            if valueFreq[query[1]] > 0:
+                freqCount[valueFreq[query[1]]] -= 1
+                valueFreq[query[1]] -= 1
+                freqCount[valueFreq[query[1]]] += 1
         else:
-            answer.append(0)
-    # check for the [0] element and what it is
-    #1
-        # add the [1] element to our data structure
-        # OR increment the count
-        # remove it from it's prev place in the second dict, and put it in the next one
-    #2 
-        #decrement the count, if it doesn;t exist, no-op
-    #3 
-        # check your data structure if any element occurs x times
-        # loop through all the values to see if any of them match x
-        # if so, then add a 1 to our answer, if not, add 0
-return answer
-# {
-#     1: [1,2,3,4,5,6,7,8,9],
-#     2: [10,11,12,]
-# }
+            if freqCount[query[1]] > 0:
+                answer.append(1)
+            else:
+                answer.append(0)
+        # check for the [0] element and what it is
+        #1
+            # add the [1] element to our data structure
+            # OR increment the count
+            # remove it from it's prev place in the second dict, and put it in the next one
+        #2 
+            #decrement the count, if it doesn;t exist, no-op
+        #3 
+            # check your data structure if any element occurs x times
+            # loop through all the values to see if any of them match x
+            # if so, then add a 1 to our answer, if not, add 0
+    return answer
+    # {
+    #     1: [1,2,3,4,5,6,7,8,9],
+    #     2: [10,11,12,]
+    # }
 
-# val_freq = {}   
+    # val_freq = {}   
 
-valueFreq = Counter()
-print(valueFreq["nonexistent"])
-print(valueFreq)
+    valueFreq = Counter()
+    print(valueFreq["nonexistent"])
+    print(valueFreq)
 
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    if __name__ == '__main__':
+        fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    q = int(input().strip())
+        q = int(input().strip())
 
-    queries = []
+        queries = []
 
-    for _ in range(q):
-        queries.append(list(map(int, input().rstrip().split())))
+        for _ in range(q):
+            queries.append(list(map(int, input().rstrip().split())))
 
-    ans = freqQuery(queries)
+        ans = freqQuery(queries)
 
-    fptr.write('\n'.join(map(str, ans)))
-    fptr.write('\n')
+        fptr.write('\n'.join(map(str, ans)))
+        fptr.write('\n')
 
-    fptr.close()
+        fptr.close()
